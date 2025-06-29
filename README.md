@@ -33,3 +33,8 @@ This toolkit notarizes the Geth binary with verifiable metadata, GPG verificatio
 ## Usage
 ```bash
 bash notarization-tools/notarize.sh
+## 🔍 Public Release Ledger
+
+- [CHANGELOG.md](./changelog.md) – Human-readable release history
+- [release.json](./release.json) – Machine-readable metadata: hashes, CIDs, declarations
+- [SHA256SUMS](./SHA256SUMS) + [Signature](./SHA256SUMS.asc) – Integrity + provenance
