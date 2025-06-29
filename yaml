@@ -33,3 +33,24 @@ jobs:
           for f in *.txt; do
             ots stamp "$f"
           done
+name: Notarize Geth Binary
+
+on:
+  push:
+    paths:
+      - '**.exe.asc'
+      - '**.exe'
+  schedule:
+    - cron: '0 0 * * 0'  # every Sunday
+
+jobs:
+  notarize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y gnupg ipfs open-timestamps-client
+      - name: Run Notarization Script
+        run: bash notarization-tools/notarize.sh
