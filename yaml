@@ -1,0 +1,22 @@
+# .github/workflows/notarize.yml
+name: Notarize Geth Binary
+
+on:
+  push:
+    paths:
+      - '**.exe.asc'
+      - '**.exe'
+
+jobs:
+  notarize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y gnupg ipfs open-timestamps-client
+
+      - name: Run Notarization Script
+        run: bash ./notarize.sh
