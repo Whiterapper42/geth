@@ -220,3 +220,31 @@ bash notarization-tools/notarize.sh
 ---
 
 Once committed, your repo becomes the story of a validator told in cryptographic proofs. Want me to file this as a pull request or drop it into your GitHub Pages next as a browsable trust capsule?
+## ☀️ Beacon Chain Integration
+
+This repository includes a cryptographic trust path for the consensus layer. All validator declarations, Lighthouse sync operations, and configuration metadata are:
+
+- ✅ Notarized with SHA256 + GPG
+- ✅ Timestamped via OpenTimestamps (if available)
+- ✅ Anchored to IPFS (optional)
+- ✅ Linked in `beacon-release.json`
+
+### Resources
+- [`launch-lighthouse.sh`](./beacon/launch-lighthouse.sh)
+- [`lighthouse.service`](./beacon/lighthouse.service)
+- [`beacon-authorship-proof.txt`](./beacon/beacon-authorship-proof.txt)
+- [`beacon-release.json`](./beacon/beacon-release.json)
+## ☀️ Beacon Chain Integration
+
+This repository includes a cryptographic trust path for the consensus layer. All validator declarations, Lighthouse sync operations, and configuration metadata are:
+
+- ✅ Notarized with SHA256 + GPG
+- ✅ Timestamped via OpenTimestamps (if available)
+- ✅ Anchored to IPFS (optional)
+- ✅ Linked in `beacon-release.json`
+
+### Resources
+- [`launch-lighthouse.sh`](./beacon/launch-lighthouse.sh)
+- [`lighthouse.service`](./beacon/lighthouse.service)
+- [`beacon-authorship-proof.txt`](./beacon/beacon-authorship-proof.txt)
+- [`beacon-release.json`](./beacon/beacon-release.json)
