@@ -1,0 +1,27 @@
+{
+  "client": "lighthouse",
+  "binary_sha256": "<computed-SHA>",
+  "gpg_fingerprint": "<imported-fingerprint>",
+  "authorship_proof": {
+    "filename": "beacon-authorship-proof.txt",
+    "timestamped": true,
+    "ots_file": "beacon-authorship-proof.txt.ots",
+    "ipfs_cid": "<CID-if-added>"
+  },
+  "launch": {
+    "date_utc": "2025-06-28T20:13:00Z",
+    "command": "./beacon/launch-lighthouse.sh"
+  },
+  "config_files": [
+    "beacon/config.yaml",
+    "beacon/lighthouse.service"
+  ]
+}
+## ☀️ Beacon Chain Integration
+
+All Lighthouse operations and metadata are publicly verifiable and anchored.
+
+- [`launch-lighthouse.sh`](./beacon/launch-lighthouse.sh) – Sync from checkpoint
+- [`lighthouse.service`](./beacon/lighthouse.service) – systemd persistence unit
+- [`beacon-authorship-proof.txt`](./beacon/beacon-authorship-proof.txt) – Signed boot log
+- [`beacon-release.json`](./beacon/beacon-release.json) – Machine-verifiable metadata
