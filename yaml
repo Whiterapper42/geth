@@ -20,3 +20,16 @@ jobs:
 
       - name: Run Notarization Script
         run: bash ./notarize.sh
+on:
+  schedule:
+    - cron: '0 0 * * 0' # every Sunday at midnight
+jobs:
+  restamp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Re-stamp Proofs
+        run: |
+          for f in *.txt; do
+            ots stamp "$f"
+          done
