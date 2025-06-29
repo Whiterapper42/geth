@@ -19,3 +19,17 @@ This repository contains configurations and setup scripts for running an Ethereu
 
 ## Setup
 Instructions coming soon...
+# Notarization Tools
+
+This toolkit notarizes the Geth binary with verifiable metadata, GPG verification, and decentralized anchoring via IPFS and OpenTimestamps.
+
+## Features
+- GPG signature validation
+- SHA256 checksum
+- Author declaration linkage
+- Smart contract binding for on-chain proof
+- IPFS and OpenTimestamps anchoring
+
+## Usage
+```bash
+bash notarization-tools/notarize.sh
