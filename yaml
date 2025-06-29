@@ -67,3 +67,49 @@ jobs:
       - name: Run Notarization
         run: bash bash/notarize.sh
 yaml-lint .github/workflows/crystal.yml
+name: Node Notarization & Proof
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  notarize:
+    name: Geth & Lighthouse Notarization
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y gnupg ipfs open-timestamps-client jq
+
+      - name: Run Geth Notarization
+        run: |
+          if [ -f notarization-tools/notarize.sh ]; then
+            bash notarization-tools/notarize.sh
+          fi
+
+      - name: Run Beacon Notarization
+        run: |
+          if [ -f beacon/launch-lighthouse.sh ]; then
+            bash beacon/launch-lighthouse.sh
+          fi
+
+      - name: Log Proofs
+        run: |
+          echo "::group::Authorship Proof Files"
+          ls -l *authorship-proof*.txt || true
+          echo "::endgroup::"
+
+      - name: Commit Updated release.json Files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add release.json beacon/beacon-release.json || true
+          git commit -m "auto: refresh release metadata via CI" || echo "No changes to commit."
+          git push
