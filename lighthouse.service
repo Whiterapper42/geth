@@ -1,0 +1,11 @@
+[Unit]
+Description=Lighthouse Beacon Node
+After=network.target
+
+[Service]
+User=ethereum
+ExecStart=/usr/local/bin/lighthouse bn --network mainnet --execution-endpoint http://localhost:8551 --jwt-secrets /path/to/jwt-secret.hex --metrics
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
