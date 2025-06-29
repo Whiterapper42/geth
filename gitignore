@@ -1,0 +1,18 @@
+# Ignore operating system files
+.DS_Store
+Thumbs.db
+
+# Node and dependency caches
+node_modules/
+*.log
+
+# Geth & Lighthouse specific
+geth/chaindata/
+geth/nodes/
+lighthouse/beacon/
+lighthouse/validators/
+
+# Keys and secrets
+*.keystore
+*.json
+*.pem
