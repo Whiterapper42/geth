@@ -1,0 +1,20 @@
+[Unit]
+Description=Lighthouse Validator Client
+Wants=lighthouse-beacon.service
+After=network.target
+
+[Service]
+User=ethereum
+ExecStart=/usr/local/bin/lighthouse vc \
+  --network mainnet \
+  --datadir /var/lib/lighthouse \
+  --validators-dir /var/lib/lighthouse/validators \
+  --secrets-dir /var/lib/lighthouse/secrets \
+  --init-slashing-protection \
+  --http
+
+Restart=on-failure
+LimitNOFILE=8192
+
+[Install]
+WantedBy=multi-user.target
