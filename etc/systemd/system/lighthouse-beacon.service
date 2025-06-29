@@ -1,0 +1,21 @@
+[Unit]
+Description=Lighthouse Beacon Node
+After=network.target
+
+[Service]
+User=ethereum
+ExecStart=/usr/local/bin/lighthouse bn \
+  --network mainnet \
+  --execution-endpoint http://localhost:8551 \
+  --execution-jwt /etc/ethereum/jwt.hex \
+  --checkpoint-sync-url https://checkpoint.mainnet.ethereum.org \
+  --datadir /var/lib/lighthouse \
+  --http \
+  --metrics \
+  --validator-monitor-auto \
+  --suggested-fee-recipient 0xYourAddressHere
+Restart=on-failure
+LimitNOFILE=8192
+
+[Install]
+WantedBy=multi-user.target
