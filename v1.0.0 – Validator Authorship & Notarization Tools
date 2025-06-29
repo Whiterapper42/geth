@@ -1,0 +1,7 @@
+gpg --armor --detach-sign SHA256SUMS
+
+geth-windows-*.exe	GPG + SHA256
+authorship-proof.txt	IPFS CID + OTS timestamp
+validator_pubkey.json	IPFS CID + GPG-signed ref
+validator-declaration.txt.asc	GitHub + GPG signature
+SHA256SUMS, .asc	GPG + GitHub release
