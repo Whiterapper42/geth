@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# === CONFIGURATION ===
+NETWORK="mainnet"
+DATA_DIR="${HOME}/.lighthouse"
+JWT_SECRET="../jwt-secret.hex"
+EXEC_ENDPOINT="http://localhost:8551"
+CHECKPOINT_URL="https://mainnet.checkpoint.sigp.io"
+OUTPUT="beacon-authorship-proof.txt"
+
+# === VERIFY DEPENDENCIES ===
+for cmd in lighthouse gpg sha256sum; do
+  command -v $cmd >/dev/null || { echo "$cmd missing"; exit 1; }
+done
+
+# === LAUNCH LIGHTHOUSE ===
+lighthouse bn \
+  --network $NETWORK \
+  --datadir $DATA_DIR \
+  --execution-endpoint $EXEC_ENDPOINT \
+  --jwt-secrets $JWT_SECRET \
+  --checkpoint-sync-url $CHECKPOINT_URL \
+  --metrics --http
+
+# === BUILD NOTARIZATION LOG ===
+SHA=$(sha256sum $(command -v lighthouse) | awk '{print $1}')
+FINGERPRINT=$(gpg --list-keys --with-colons | grep fpr | head -n1 | cut -d: -f10)
+
+{
+  echo "=== Beacon Notarization ==="
+  echo "Client: lighthouse"
+  echo "SHA256: $SHA"
+  echo "Launched: $(date -u)"
+  echo "GPG Fingerprint: $FINGERPRINT"
+} > "$OUTPUT"
+
+# === Optional: Timestamping ===
+if command -v ots >/dev/null; then
+  ots stamp "$OUTPUT"
+  echo "Stamped via OpenTimestamps"
+fi
+
+# === Optional: IPFS Anchoring ===
+if command -v ipfs >/dev/null; then
+  CID=$(ipfs add -Q "$OUTPUT")
+  echo "IPFS CID: $CID" >> "$OUTPUT"
+  echo "Beacon Notarization pinned: $CID"
+fi
