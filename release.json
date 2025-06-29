@@ -1,0 +1,29 @@
+{
+  "version": "v1.0.0",
+  "commit": "0467df1051102f504292f524c7c6ee4297912018",
+  "date": "2025-06-28",
+  "gpg_signer": "Johann Hulstrom <you@example.com>",
+  "fingerprint": "Your-Full-GPG-Fingerprint",
+  "sha256": {
+    "geth.exe": "abc123...def",
+    "geth.exe.asc": "789xyz...321",
+    "authorship-proof.txt": "fed456...abc",
+    "notarize.sh": "0044ae...9988",
+    "validator_pubkey.json": "fae123...bcd",
+    "validator-declaration.txt.asc": "cafe456...234",
+    "SHA256SUMS": "deadbeef...c0ffee"
+  },
+  "ipfs_anchors": {
+    "authorship-proof.txt": "bafybeiauthorship...",
+    "validator_pubkey.json": "bafybeipubkeymeta...",
+    "validator-declaration.txt.asc": "bafybeideclaration..."
+  },
+  "ots_proofs": [
+    "authorship-proof.txt.ots",
+    "validator_pubkey.json.ots",
+    "validator-declaration.txt.asc.ots"
+  ],
+  "declaration_url": "https://github.com/Whiterapper42/public-declarations/blob/main/validator-declaration.txt",
+  "smart_contract_anchor": "0xYourContractHashHere",
+  "validator_pubkey": "0xa1b2c3d4e5...f6"
+}
