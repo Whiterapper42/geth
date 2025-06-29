@@ -1,0 +1,4 @@
+sha256sum \
+  geth-windows-amd64-1.16.0-57f8971b.exe \
+  geth-windows-amd64-1.16.0-57f8971b.exe.asc \
+  > SHA256SUMS
