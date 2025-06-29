@@ -1,0 +1,8 @@
+beacon/
+├── launch-lighthouse.sh          # CLI script to initialize and sync
+├── lighthouse.service            # systemd unit for Linux services
+├── config.yaml                   # Optional Lighthouse config overrides
+├── jwt-secret.hex                # Shared JWT secret for Geth ↔ Lighthouse
+├── validator-keys/               # (Optional) Keystore and slashing protection
+│   ├── keystore-*.json
+│   └── slashing_protection.sqlite
