@@ -40,3 +40,7 @@ if command -v ipfs > /dev/null; then
   echo "IPFS CID: $CID"
   echo "{\"file\": \"$OUTPUT\", \"cid\": \"$CID\"}" >> ipfs-anchors.json
 fi
+sudo systemctl daemon-reexec
+sudo systemctl daemon-reload
+sudo systemctl enable lighthouse-beacon
+sudo systemctl start lighthouse-beacon
