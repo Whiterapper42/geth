@@ -44,3 +44,9 @@ sudo systemctl daemon-reexec
 sudo systemctl daemon-reload
 sudo systemctl enable lighthouse-beacon
 sudo systemctl start lighthouse-beacon
+## 🔐 Trust Graph
+
+[Geth Binary] ──GPG→ SHA256 ──OTS/IPFS→ [authorship-proof.txt]  
+                                │  
+                                ↓  
+[Validator Identity] ──GPG→ Declaration ──IPFS→ Beacon Deposit  
