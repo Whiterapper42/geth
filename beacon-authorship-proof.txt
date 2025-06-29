@@ -1,0 +1,36 @@
+beacon/
+├── launch-lighthouse.sh          # CLI script to initialize and sync
+├── lighthouse.service            # systemd unit for Linux services
+├── config.yaml                   # Optional Lighthouse config overrides
+├── jwt-secret.hex                # Shared JWT secret for Geth ↔ Lighthouse
+├── validator-keys/               # (Optional) Keystore and slashing protection
+│   ├── keystore-*.json
+│   └── slashing_protection.sqlite
+#!/bin/bash
+
+# === Configuration ===
+DATA_DIR="$HOME/.lighthouse"
+NETWORK="mainnet"
+EXECUTION_ENDPOINT="http://localhost:8551"
+JWT_SECRET="./jwt-secret.hex"
+
+# === Launch Beacon Node ===
+lighthouse bn \
+  --network "$NETWORK" \
+  --datadir "$DATA_DIR" \
+  --execution-endpoint "$EXECUTION_ENDPOINT" \
+  --jwt-secrets "$JWT_SECRET" \
+  --checkpoint-sync-url "https://mainnet.checkpoint.sigp.io" \
+  --metrics \
+  --http
+[Unit]
+Description=Lighthouse Beacon Node
+After=network.target
+
+[Service]
+User=ethereum
+ExecStart=/usr/local/bin/lighthouse bn --network mainnet --execution-endpoint http://localhost:8551 --jwt-secrets /path/to/jwt-secret.hex --metrics
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
