@@ -1,0 +1,37 @@
+name: Crystal CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    container:
+      image: crystallang/crystal
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install dependencies
+      run: shards install
+    - name: Run tests
+      run: crystal spec
+
+---
+
+#### `metadata-schema.json`
+```json
+{
+  "binary": "string",
+  "verified": "ISO-8601 datetime",
+  "sha256": "hex",
+  "gpg_fingerprint": "string",
+  "gpg_user_id": "string",
+  "declaration_url": "uri",
+  "smart_contract_hash": "hex",
+  "ipfs_cid": "cidv1 (optional)"
+}
