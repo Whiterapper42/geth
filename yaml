@@ -54,3 +54,16 @@ jobs:
           sudo apt install -y gnupg ipfs open-timestamps-client
       - name: Run Notarization Script
         run: bash notarization-tools/notarize.sh
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  notarize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Run Notarization
+        run: bash bash/notarize.sh
+yaml-lint .github/workflows/crystal.yml
